@@ -150,6 +150,7 @@ account_4101,4101,盈余公积,,FALSE,equity,,l10n_chart_china_standard_business
 account_4102,4102,一般风险准备,,FALSE,equity,tag23,l10n_chart_china_standard_business_latest
 account_4103,4103,本年利润,,FALSE,equity,,l10n_chart_china_standard_business_latest
 account_4104,4104,利润分配,,FALSE,equity,,l10n_chart_china_standard_business_latest
+account_4104_10,4104.10,未分配利润,account_4104,FALSE,equity_unaffected,,l10n_chart_china_standard_business_latest
 account_4201,4201,库存股,,FALSE,equity,,l10n_chart_china_standard_business_latest
 account_5001,5001,生产成本,,FALSE,asset_current,,l10n_chart_china_standard_business_latest
 account_5101,5101,制造费用,,FALSE,asset_current,,l10n_chart_china_standard_business_latest
