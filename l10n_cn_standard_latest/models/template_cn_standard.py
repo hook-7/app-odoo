@@ -6,6 +6,17 @@ from odoo.addons.account.models.chart_template import template
 class AccountChartTemplate(models.AbstractModel):
     _inherit = 'account.chart.template'
 
+    # 注意，coa 相关模型
+    # TEMPLATE_MODELS = (
+    #     'account.group',
+    #     'account.account',
+    #     'account.tax.group',
+    #     'account.tax',
+    #     'account.journal',
+    #     'account.reconcile.model',
+    #     'account.fiscal.position',
+    # )
+    
     @template('cn_standard')
     def _get_cn_standard_template_data(self):
         return {
@@ -51,10 +62,11 @@ class AccountChartTemplate(models.AbstractModel):
     def _get_cn_account_journal(self):
         return {
             'cash': {
-                'name': 'Cash on Hand',
+                'name': _('Cash on Hand'),
                 'default_account_id': 'account_1001'
             },
             'bank': {
-                'default_account_id': 'account_1002',
+                'name': _('Bank'),
+                'default_account_id': 'account_1002_01',
             },
         }

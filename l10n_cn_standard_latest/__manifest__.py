@@ -9,7 +9,7 @@
 
 {
     'name': '2024最新中国会计科目表.企业标准会计.Latest Chinese Accounting for odoo17',
-    'version': '24.11.03',
+    'version': '24.11.04',
     'author': 'odooai.cn',
     'category': 'Accounting/Localizations/Account Charts',
     'website': 'https://www.odooai.cn',
@@ -22,7 +22,6 @@
     Set chinese account report. 
     """,
     'description': """
-
     最新中国化财务，主要针对标准会计科目表作了优化。
     1. 2024最新会计科目表，处理营改增后会计科目调整。更新至最新税率。odoo 17专用。
     2. 将菜单中设置为"财务"。
@@ -48,7 +47,6 @@
     * 税金模板
     """,
     'depends': [
-        'base',
         'account',
         'app_odoo_customize',
     ],
@@ -64,7 +62,7 @@
     'installable': True,
     'application': True,
     'auto_install': False,
-    'external_dependencies': {
-        'python': ['cn2an']
-    },
+    # 'external_dependencies': {
+    #     'python': ['cn2an']
+    # },
 }
