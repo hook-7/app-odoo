@@ -17,6 +17,8 @@
 
 from odoo import api, SUPERUSER_ID, _
 
+import logging
+_logger = logging.getLogger(__name__)
 
 def pre_init_hook(cr):
     """
@@ -56,11 +58,17 @@ def post_init_hook(cr, registry):
         env = api.Environment(cr, SUPERUSER_ID, {'active_test': True})
         ids = env['res.company'].sudo().search([], limit=1)
         if ids:
-            ids.write({'currency_id': env.ref('base.CNY').id})
+            try:
+                ids.write({'currency_id': env.ref('base.CNY').id})
+            except Exception as e:
+                _logger.error('cn: company write currency_id error.')
         # 价格表改人民币
         ids = env['product.pricelist'].sudo().search([], limit=1)
         if ids:
-            ids.write({'currency_id': env.ref('base.CNY').id})
+            try:
+                ids.write({'currency_id': env.ref('base.CNY').id})
+            except Exception as e:
+                _logger.error('cn: pricelist write currency_id error.')
     except Exception as e:
         raise Warning(e)
 
