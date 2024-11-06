@@ -8,7 +8,7 @@
 
 {
     'name': 'Google Bard Ai for odoo ai center, 谷歌Ai支持',
-    'version': '16.23.10.11',
+    'version': '16.24.11.06',
     'author': 'odooai.cn',
     'company': 'odooai.cn',
     'maintainer': 'odooai.cn',
