@@ -18,7 +18,7 @@ class AiRobot(models.Model):
     provider = fields.Selection(
         selection_add=[('google', 'Google Ai')],
         ondelete={'google': 'set default'}
-    ),
+    )
     set_ai_model = fields.Selection(
         selection_add=[('google-bard', 'Google Bard')],
         ondelete={'google-bard': 'set default'})
@@ -28,13 +28,13 @@ class AiRobot(models.Model):
         if self.provider == 'google':
             self.endpoint = 'https://api.bard.ai/v1/text/generate'
         return super()._onchange_provider()
-    
+
     def get_google(self, data, author_id, answer_id, param={}):
         self.ensure_one()
         headers = {"Content-Type": "application/json", "Authorization": f"Bearer {self.openapi_api_key}"}
         R_TIMEOUT = self.ai_timeout or 120
         o_url = self.endpoint or "https://api.bard.ai/v1/text/generate"
-        
+
         # todo: 更多参数如 prompt, max_length
         max_tokens = param.get('max_tokens') if param.get('max_tokens') else self.max_tokens
         temperature = param.get('temperature') if param.get('temperature') else self.temperature
@@ -52,9 +52,9 @@ class AiRobot(models.Model):
             _logger.warning("Get Response Json failed: %s", e)
         else:
             _logger.warning('=====================Openai output data: %s' % response.json())
-    
+
     def get_google_post(self, res, author_id=False, answer_id=False, param={}):
         if self.provider == 'google':
             content = res['text']
             return content, False, True
-        
+
