@@ -47,7 +47,7 @@
     Search with Hierarchy Parent Children Tree. seo search.
     odoo高级搜索，日期搜索，时间搜索，字符串搜索，数字搜索，下拉搜索. 列表快速搜索。
     超级方便的查询，树状视图导航。可用在任何模块中。
-    1. Quick Advance Search and navigator for all app data. 20+ free odoo app search in box.
+    1. Quick Advance Search and navigator for all app data. 10+ free odoo app search in box.
     2. Quick search in tree list header. Date range, Datetime, selection, number supported.
     3. Advance search sidebar for many2one, many2many field. m2o search, m2m search for multi select.
     4. Advance sidebar for date range search, datetime search, boolean search, selection search, number search.

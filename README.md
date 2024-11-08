@@ -56,7 +56,7 @@ ztree widget.Hierarchy Tree.Parent Children relation tree..
 
 Browse journal by account chart... Use for parent children tree list kanban navigator. 
 
-    ztree widget.Hierarchy Tree.Parent Children relation tree.
+    Hierarchy Tree.Parent Children relation tree.
 
 财务模块多层级树状导航应用（中国专用）
 

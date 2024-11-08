@@ -27,7 +27,7 @@
     'summary': """
     Browse mrp order, Manufacturing Orders by Materials Availability, work center.
     Easy to navigator and browse any data. Support list, kanban, pivot, graph view. 
-    ztree widget.Hierarchy Tree.
+    Hierarchy Tree.
     """,
     'description': """
     Superbar, zTree widget. 
