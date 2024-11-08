@@ -48,7 +48,7 @@
                 id="menu_app_theme_config"
                 parent="menu_app_group"
                 sequence="1"
-                action="action_app_theme_config"
+                action="app_common.action_odooai_cloud_config"
                 groups="base.group_system"/>
         <menuitem
                 id="menu_ir_cron"
