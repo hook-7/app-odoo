@@ -22,7 +22,6 @@
           <field name="arch" type="xml">
               <xpath expr="//field[@name='account_type']" position="after">
                   <field name="group_id"/>
-                  <field name="tag_ids" widget="many2many_tags"/>
               </xpath>
           </field>
       </record>
