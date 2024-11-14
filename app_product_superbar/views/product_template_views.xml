@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//search">
                 <searchpanel view_types="list,kanban,pivot,graph,search">
-                    <field name="categ_id" text="name" enable_counters="1" limit="1000"/>
+                    <field name="categ_id" text="name" enable_counters="1" limit="10000"/>
                     <field name="type"/>
 	                <field name="product_tag_ids" select="multi"/>
                 </searchpanel>
