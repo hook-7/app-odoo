@@ -26,14 +26,14 @@
 
 {
     'name': 'Group Company Multi Level Chart Hierarchy, 集团公司多层级结构图zChart',
-    'version': '17.0.24.05.06',
+    'version': '17.0.24.12.04',
     'author': 'odooai.cn',
     'category': 'Extra tools',
     'website': 'https://www.odooai.cn',
     'live_test_url': 'https://demo.odooapp.cn',
     'license': 'LGPL-3',
     'sequence': 2,
-    'price': 999.00,
+    'price': 0.00,
     'currency': 'EUR',
     'images': ['static/description/banner.png'],
     'summary': '''
