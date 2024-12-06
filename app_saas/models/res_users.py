@@ -34,32 +34,42 @@ class ResUsers(models.Model):
     _inherit = 'res.users'
     
     @api.model
-    def auth_oauth(self, provider, params):
+    def get_token_from_code(self, provider, params):
+        # 通过 code 取 token
         # 这里原生是没处理code模式，此处将增加使用code取token，不在 controller 中处理
+        oauth_provider = self.env['auth.oauth.provider'].sudo().browse(provider)
+        
+        # odoo 特殊处理，用code取token
+        params.update({
+            'scope': oauth_provider.scope or '',
+            'client_id': oauth_provider.client_id or '',
+        })
+        if hasattr(oauth_provider, 'client_secret') and oauth_provider.client_secret:
+            params.update({
+                'client_secret': oauth_provider.client_secret or '',
+            })
+        response = requests.get(oauth_provider.code_endpoint, params=params, timeout=30)
+        if response.ok:
+            ret = response.json()
+            # todo: 客户机首次连接时，取到的 server 端 key 写入 provider 的 client_secret
+            if ret.get('push_client_secret') and hasattr(oauth_provider, 'client_secret'):
+                oauth_provider.write({'client_secret': ret.get('push_client_secret')})
+                self._cr.commit()
+            return ret
+        return {}
+    
+    @api.model
+    def auth_oauth(self, provider, params):
         code = params.get('code', False)
         access_token = params.get('access_token')
         oauth_provider = self.env['auth.oauth.provider'].sudo().browse(provider)
-        
-        kw = {}
+        # 额外code 处理
+        kw = params
         if oauth_provider.code_endpoint and code and not access_token:
-            # odoo 特殊处理，用code取token
-            params.update({
-                'scope': oauth_provider.scope or '',
-                'client_id': oauth_provider.client_id or '',
-            })
-            if hasattr(oauth_provider, 'client_secret') and oauth_provider.client_secret:
-                params.update({
-                    'client_secret': oauth_provider.client_secret or '',
-                })
-            response = requests.get(oauth_provider.code_endpoint, params=params, timeout=30)
-            if response.ok:
-                ret = response.json()
-                # todo: 客户机首次连接时，取到的 server 端 key 写入 provider 的 client_secret
-                if ret.get('push_client_secret') and hasattr(oauth_provider, 'client_secret'):
-                    oauth_provider.write({'client_secret': ret.get('push_client_secret')})
-                    self._cr.commit()
-            kw = {**ret, **params}
+            ret = self.get_token_from_code(provider, params)
+            kw.update(ret)
             kw.pop('code', False)
+            
         self = self.with_context(auth_extra=kw)
         res = super(ResUsers, self).auth_oauth(provider, kw)
         return res
