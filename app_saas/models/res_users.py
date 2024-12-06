@@ -15,7 +15,6 @@ from odoo import api, fields, models, _
 from odoo.exceptions import AccessDenied, UserError
 from odoo.addons.auth_signup.models.res_users import SignupError
 from odoo.http import request, Response
-from odoo.tools.misc import ustr
 
 from ast import literal_eval
 import json
@@ -66,7 +65,7 @@ class ResUsers(models.Model):
         # 额外code 处理
         kw = params
         if oauth_provider.code_endpoint and code and not access_token:
-            ret = self.get_token_from_code(provider, params)
+            ret = self.sudo().get_token_from_code(provider, params)
             kw.update(ret)
             kw.pop('code', False)
             
@@ -96,36 +95,6 @@ class ResUsers(models.Model):
         res = super(ResUsers, self)._auth_oauth_signin(provider, validation, params)
         return res
     
-    def _create_user_from_template(self, values):
-        # 处理odooapp.cn 为 server 时 默认为内部用户
-        oauth_provider_id = values.get('oauth_provider_id')
-        if oauth_provider_id:
-            provider = request.env['auth.oauth.provider'].sudo().browse(int(oauth_provider_id))
-            if provider:
-                template_user = provider.user_template_id
-                if not template_user and provider.scope.find('odoo') >= 0:
-                    template_user = self.sudo().env.ref('base.default_user', False)
-                if not template_user:
-                    template_user_id = literal_eval(self.env['ir.config_parameter'].sudo().get_param('base.template_portal_user_id', 'False'))
-                    template_user = self.sudo().browse(template_user_id)
-
-                if not values.get('login'):
-                    raise ValueError(_('Signup: no login given for new user'))
-                if not values.get('partner_id') and not values.get('name'):
-                    raise ValueError(_('Signup: no name or partner given for new user'))
-
-                # create a copy of the template user (attached to a specific partner_id if given)
-                values['active'] = True
-                try:
-                    with self.env.cr.savepoint():
-                        return template_user.sudo().with_context(no_reset_password=True).copy(values)
-                except Exception as e:
-                    # copy may failed if asked login is not available.
-                    raise SignupError(ustr(e))
-        res = super(ResUsers, self)._create_user_from_template(values)
-        self._cr.commit()
-        return res
-
     @api.model
     def _generate_signup_values(self, provider, validation, params):
         # 此处生成 创建 odoo user 的初始值，增加字段如头像
