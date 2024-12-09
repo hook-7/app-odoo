@@ -23,7 +23,7 @@ class MrpProduction(models.Model):
 
     image_128 = fields.Image(related='product_id.image_128', readonly=True)
     product_name = fields.Char(related='product_id.name', readonly=True)
-    parent_path = fields.Char(index=True)
+    parent_path = fields.Char(index=True, unaccent=False)
 
     @api.depends('child_ids.child_all_count')
     def _compute_child_all_count(self):
