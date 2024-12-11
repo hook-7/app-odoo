@@ -27,7 +27,7 @@ def app_relaxng(view_type):
                 _relaxng_cache[view_type] = None
     return _relaxng_cache[view_type]
 
-# view_validation.relaxng = app_relaxng
+view_validation.relaxng = app_relaxng
 #
 # class View(models.Model):
 #     _inherit = 'ir.ui.view'
