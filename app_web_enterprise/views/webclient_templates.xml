@@ -3,15 +3,12 @@
     <!-- 企业版变色   -->
     <template id="app_layout" inherit_id="web.layout" name="app Web layout">
         <xpath expr="//meta[last()]" position="after">
-            <meta name="theme-color" content="#00796B"/>
             <meta name="mobile-web-app-capable" content="yes"/>
             <!-- Windows Phone -->
-            <meta name="msapplication-navbutton-color" content="#00796B"/>
-            <meta name="msapplication-TileColor" content="#00796B"/>
+            <meta name="msapplication-navbutton-color" t-att-content="'#242733' if request.cookies.get('color_scheme') == 'dark' else '#00796B'"/>
+            <meta name="msapplication-TileColor" t-att-content="'#242733' if request.cookies.get('color_scheme') == 'dark' else '#00796B'"/>
             <!-- iOS Safari -->
-            <meta name="apple-mobile-web-app-capable" content="yes"/>
-            <meta name="theme-color" content="#00796B" media="(prefers-color-scheme: light)"/>
-            <meta name="theme-color" content="#242733" media="(prefers-color-scheme: dark)"/>
+            <meta name="theme-color" t-att-content="'#242733' if request.cookies.get('color_scheme') == 'dark' else '#00796B'"/>
         </xpath>
     </template>
 <!--    <template id="replace_theme_color" name="Replace theme color" inherit_id="web.webclient_bootstrap">-->

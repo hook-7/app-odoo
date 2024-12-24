@@ -18,7 +18,7 @@
 
 {
     'name': "odoo18 Enterprise enhance Pack,企业版界面及操作增强",
-    'version': '18.0.24.12.16',
+    'version': '18.0.24.12.24',
     'author': 'odooai.cn',
     'category': 'Extra tools',
     'website': 'https://www.odooai.cn',
@@ -80,8 +80,8 @@
         ],
         "web.assets_web_dark": [
             ('remove', 'app_web_enterprise/static/src/scss/home_menu.variables.scss'),
-            ('remove', 'app_web_enterprise/static/src/scss/navbar.variables.scss'),
-            ('remove', 'app_web_enterprise/static/src/scss/navbar.scss'),
+            ('remove', 'app_web_enterprise/static/src/webclient/navbar.variables.scss'),
+            ('remove', 'app_web_enterprise/static/src/webclient/navbar.scss'),
         ],
         # 这里是改样式，要 after处理
         'web.assets_frontend': [
