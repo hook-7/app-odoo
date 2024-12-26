@@ -22,7 +22,7 @@
 # description:
 
 {
-    'name': 'odoo18 Tweak,Ai Employee,Boost,Customize All in One. Customize,UI,Boost,Security,Data,Development Enhance',
+    'name': 'odoo18 Tweak OEM Rebrand,Ai Employee,Boost,Customize All in One. UI,Boost,Security,Data,Development Enhance',
     'version': '18.0.24.12.20',
     'author': 'odooai.cn',
     'category': 'Extra Tools',
@@ -32,7 +32,7 @@
     'sequence': 2,
     'images': ['static/description/banner.gif'],
     'summary': """
-    50+ Odoo Enhance in 1 click Tweak odoo. all in one odoo enhancement. for Customize,UI,Boost Security,Development.
+    50+ Odoo Enhance in 1 click Tweak odoo. Change Odoo to your OEM brand.all in one odoo enhancement. for Customize,UI,Boost Security,Development.
     Easy reset data, clear data, reset account chart, reset Demo data.
     For quick debug. Set brand,Language Switcher all in one.
     """,
