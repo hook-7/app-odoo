@@ -51,7 +51,7 @@
                 <field name="path_temp"/>
                 <field name="color"/>
                 <templates>
-                    <t t-name="kanban-box">
+                    <t t-name="card">
                         <div t-attf-style="border-left: 3px solid #{record.color.raw_value}" t-attf-class="oe_kanban_global_click">
                             <div class="oe_kanban_details">
                                 <strong class="o_kanban_record_title"><field name="name"/></strong>
