@@ -33,6 +33,11 @@ msgstr "设置"
 
 #. module: app_saas
 #: model_terms:ir.ui.view,arch_db:app_saas.app_res_config_settings_view_form
+msgid "https://www.odooapp.cn/apps/modules/app_cn_po"
+msgstr "https://www.odooapp.cn/apps/modules/app_cn_po"
+
+#. module: app_saas
+#: model_terms:ir.ui.view,arch_db:app_saas.app_res_config_settings_view_form
 msgid "Or get the app from"
 msgstr "您可以在此获取本应用模块"
 
@@ -43,6 +48,6 @@ msgid "SaaS Chinese PO"
 msgstr "中文云翻译PO"
 
 #. module: app_saas
-#: model_terms:ir.ui.view,arch_db:app_saas.app_res_config_settings_view_form
-msgid "https://www.odooapp.cn/apps/modules/app_cn_po"
-msgstr "https://www.odooapp.cn/apps/modules/app_cn_po"
+#: model:ir.model.fields,field_description:social_login.field_auth_oauth_provider__code_endpoint
+msgid "Token by Code Endpoint"
+msgstr "Code取Token入口"

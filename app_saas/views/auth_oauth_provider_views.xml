@@ -8,9 +8,6 @@
             <xpath expr="//field[@name='auth_endpoint']" position="after">
                 <field name="code_endpoint"/>
             </xpath>
-            <xpath expr="//field[@name='data_endpoint']" position="before">
-                <field name="user_template_id"/>
-            </xpath>
         </field>
     </record>
 </odoo>

@@ -50,9 +50,15 @@ class ResUsers(models.Model):
         response = requests.get(oauth_provider.code_endpoint, params=params, timeout=30)
         if response.ok:
             ret = response.json()
-            # todo: 客户机首次连接时，取到的 server 端 key 写入 provider 的 client_secret
-            if ret.get('push_client_secret') and hasattr(oauth_provider, 'client_secret'):
-                oauth_provider.write({'client_secret': ret.get('push_client_secret')})
+            # 客户机首次连接时，取到的 server 端 key 写入 provider 的 client_secret
+            push_client_secret = ret.pop('push_client_secret', False)
+            if push_client_secret:
+                ICP = self.env['ir.config_parameter'].sudo()
+                app_saas_db_token = ICP.get_param('app_saas_db_token', False)
+                if not app_saas_db_token:
+                    ICP.set_param('app_saas_db_token', push_client_secret)
+                if hasattr(oauth_provider, 'client_secret') and not oauth_provider.client_secret:
+                    oauth_provider.write({'client_secret': push_client_secret})
                 self._cr.commit()
             return ret
         return {}
