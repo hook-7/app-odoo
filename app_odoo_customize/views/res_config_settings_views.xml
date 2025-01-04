@@ -11,8 +11,8 @@
                     <label class="h2 bg-warning text-white" for="app_system_name"/>
                     <field name="app_system_name"/>
                 </xpath>
-                <xpath expr="//block[@name='odooai_cloud_block']" position="after">
-                    <h2>Security and Boost</h2>
+				<xpath expr="//div[@id='app_slot2']" position="before">
+                    <h2 name="app_security_boost_begin">Security and Boost</h2>
                     <div class="row mt16 o_settings_container" name="app_security_boost">
                         <group>
                             <group>
