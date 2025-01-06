@@ -3,6 +3,7 @@
 import openai
 import requests, json
 import datetime
+from markupsafe import Markup
 # from transformers import TextDavinciTokenizer, TextDavinciModel
 from odoo import api, fields, models, tools, _
 from odoo.exceptions import UserError
@@ -126,7 +127,7 @@ class Channel(models.Model):
                     'content': ai_content,
                 })
             if not user_msg.author_id.gpt_id:
-                user_content = user_msg.description.replace("<p>", "").replace("</p>", "").replace('@%s' % answer_id.name, '').lstrip()
+                user_content = user_msg.body.replace("<p>", "").replace("</p>", "").replace('@%s' % answer_id.name, '').lstrip()
                 context_history.insert(0, {
                     'role': 'user',
                     'content': user_content,
@@ -147,6 +148,7 @@ class Channel(models.Model):
             if get_ua_type() != 'wxweb':
                 # 处理当微信语音返回时，是直接回文本信息，不需要转换回车
                 res = res.replace('\n', '<br/>')
+                res = Markup(res)
             new_msg = channel.with_user(user_id).message_post(body=res, message_type='comment', subtype_xmlid='mail.mt_comment', parent_id=message.id)
             if usage:
                 if ai.provider == 'ali':
@@ -246,7 +248,7 @@ class Channel(models.Model):
             msg = _("Please warmly welcome our new partner %s and send him the best wishes.") % message.author_id.name
         else:
             # 不能用 preview， 如果用 : 提示词则 preview信息丢失
-            plaintext_ct = tools.html_to_inner_content(message.body)
+            plaintext_ct = tools.mail.html_to_inner_content(message.body)
             msg = plaintext_ct.replace('@%s' % answer_id.name, '').lstrip()
 
         if not msg:
@@ -318,7 +320,7 @@ class Channel(models.Model):
                 # else:
                 #     self.with_delay().get_ai_response(ai, messages, channel, user_id, message)
             except Exception as e:
-                raise UserError(_(e))
+                raise UserError(e)
 
         return rdata
 
