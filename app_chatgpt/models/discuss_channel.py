@@ -246,7 +246,7 @@ class Channel(models.Model):
             msg = _("Please warmly welcome our new partner %s and send him the best wishes.") % message.author_id.name
         else:
             # 不能用 preview， 如果用 : 提示词则 preview信息丢失
-            plaintext_ct = tools.html_to_inner_content(message.body)
+            plaintext_ct = tools.mail.html_to_inner_content(message.body)
             msg = plaintext_ct.replace('@%s' % answer_id.name, '').lstrip()
 
         if not msg:
