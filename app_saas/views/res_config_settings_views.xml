@@ -10,7 +10,7 @@
                     <setting string="SaaS Chinese PO" id="module_app_cn_po" invisible="not app_saas_ok"
                              help="Checked to Sync Odoo Chinese from www.odooapp.cn">
                         <field name="module_app_cn_po"/>
-                        <div class="content-group mt16" invisible="not module_app_cn_po" id="msg_module_app_cn_po">
+                        <div class="content-group mt16" id="msg_module_app_cn_po">
                             <div class="mt16 text-warning">
                                 <strong>Save</strong> to Install Chinese PO App if downloaded.
                             </div>

@@ -3,7 +3,7 @@
     <data noupdate="1">
         <record id="provider_app_saas" model="auth.oauth.provider">
             <field name="name">Ai Passport of odooapp.cn</field>
-            <field name="body">Ai通行证-Odoo中文应用商店</field>
+            <field name="body">Ai Passport of odooapp.cn</field>
             <field name="auth_endpoint">https://www.odooapp.cn/oauth/authorize</field>
             <field name="code_endpoint">https://www.odooapp.cn/oauth/token</field>
             <field name="scope">odoo,profile</field>
